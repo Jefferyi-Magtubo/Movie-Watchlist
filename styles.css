@@ -1,0 +1,173 @@
+* {
+    box-sizing: border-box;
+}
+
+html, body{
+    margin: 0;
+}
+
+body{
+    background: #121212;
+    color: whitesmoke;
+    font-family: 'Inter', sans-serif;
+}
+
+header {
+    background: url('/images/header.png');
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    padding: 1em 1em;
+    height: 208px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+p {
+    line-height: 1.4;
+}
+
+header > h1 {
+    font-size: 2.674375rem;
+    font-weight: 800;
+}
+
+header > p {
+    font-size: .875rem;
+    font-weight: 700;
+}
+
+p > a {
+    text-decoration: none;
+    color: whitesmoke
+}
+
+.search {
+    position: relative;
+    top: -1em;
+    display: grid;
+    grid-template-columns: 8fr 2fr;
+    align-items: center;
+    margin: 0 auto;
+    width: 80%;
+    background-color: #2E2E2F;
+    border-radius: 5px;
+}
+
+.search-text {
+    display: flex;
+    align-items: center;
+    padding: .5em;
+    width: 100%;
+    grid-column: span 2;
+}
+
+.search-text > input {
+    background-color: #2E2E2F;
+    border: none;
+    width: 100%;
+    color: whitesmoke;
+    font-family: 'Inter', sans-serif;
+    padding-left: .5em;
+    flex: 1;
+}
+
+.search-text > input:focus {
+    outline: none;
+}
+
+.search > button {
+    background-color: #4B4B4B;
+    color: whitesmoke;
+    border: none;
+    font-family: 'Inter', sans-serif;
+    height: 100%;
+    cursor: pointer;
+    padding: .5em;
+    margin: 0;
+    grid-column: 3;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.default-message {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 5em auto 0 auto;
+    width: 50%;
+    color: #2E2E2F;
+}
+
+.default-watchlist-message {
+    color: #787878;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 5em auto 0 auto;
+}
+
+.default-watchlist-message > i {
+    background-color: white;
+}
+
+.movie-element {
+    display: flex;
+    width: 80%;
+    margin: 0 auto;
+    font-size: .6rem;
+    gap: 1em;
+    margin-bottom: 1em;
+}
+
+.movielist-img img {
+    width: 100px;
+    height: 150px;
+}
+
+.movie-element img {
+    width: 100px;
+    height: 150px;
+}
+
+
+.movie-title-and-rating, .movie-info {
+    display: flex;
+    align-items: center;
+    gap: 1.3em;
+}
+
+.fa-star {
+    color: yellow;
+}
+
+hr {
+    width: 80%;
+}
+
+.add-watchlist-button, .remove-watchlist-button {
+    cursor: pointer;
+}
+
+.add-watchlist-button {
+    color: #10B981
+}
+
+.add-watchlist-button:hover {
+    color: #0d8e6e;
+}
+
+.remove-watchlist-button {
+    color: #BD4337;
+}
+
+.remove-watchlist-button:hover {
+    color: #8F2F28;
+}
+
+#watchlist {
+    margin-top: 1em;
+}
