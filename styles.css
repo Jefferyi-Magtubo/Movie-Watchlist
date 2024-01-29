@@ -55,6 +55,7 @@ p > a {
     width: 80%;
     background-color: #2E2E2F;
     border-radius: 5px;
+    max-width: 500px;
 }
 
 .search-text {
