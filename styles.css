@@ -20,15 +20,13 @@ header {
     padding: 1em 1em;
     height: 208px;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
 }
 
 p {
     line-height: 1.1;
 }
-
-
 
 header > h1 {
     font-size: 2.674375rem;
@@ -124,6 +122,11 @@ p > a {
     font-size: .6rem;
     gap: 1em;
     margin-bottom: 1em;
+}
+
+#watchlist, #movie-list {
+    max-width: 1000px;
+    margin: 0 auto;
 }
 
 .movielist-img img {
