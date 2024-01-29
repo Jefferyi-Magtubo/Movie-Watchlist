@@ -3,10 +3,6 @@ const searchBtn = document.getElementById('search-btn')
 const movieList = document.getElementById('movie-list')
 const watchListPage = document.getElementById('watchlist')
 
-// localStorage.setItem('watchlist', JSON.stringify([]))
-
-console.log("index.js loaded");
-
 //Search Functionality
 searchBtn.addEventListener('click', async (e) => {
     e.preventDefault()
@@ -27,8 +23,8 @@ async function handleSearch(searchInput) {
 
     const moviePromises = searchResults.map(async(result) => {
         const titleOfMovie = result.Title.split(' ').join('-')
-        const updatedTitleOfMovie = titleOfMovie.replace(/(?<![a-zA-Z,])'(?![a-zA-Z])/g, '').replace(/,/g, '');
-        const movie = await fetch(`https://www.omdbapi.com/?apikey=69a3b158&t=${updatedTitleOfMovie}&type=movie&plot=full&y=${result.Year}`)
+        const updatedTitleOfMovie = titleOfMovie.replace(/(?<![a-zA-Z])'(?<![a-zA-Z])/g, '').replace(/,/g, '') //checking to make sure the ' isn't between letters. If it is, it wont'get replaced
+        const movie = await fetch(`https://www.omdbapi.com/?apikey=69a3b158&t=${updatedTitleOfMovie}&type=movie&y=${result.Year}`)
         const movieInfo = await movie.json()
         
         const watchlistToJson = localStorage.getItem('watchlist')
@@ -36,7 +32,6 @@ async function handleSearch(searchInput) {
         const idsToCheck = currentwatchlist.map((movieInWatchlist) => {
             return movieInWatchlist.imdbID
         })
-        console.log(movieInfo)
         
         if (idsToCheck.includes(movieInfo.imdbID)) {
             return `
@@ -52,9 +47,9 @@ async function handleSearch(searchInput) {
                     <div class='movie-info'>
                         <p>${movieInfo.Runtime}</p>
                         <p>${movieInfo.Genre}</p>
-                        <p>(Already in watchlist)</p>
+                        <p class='already-watched'>(Already in watchlist)</p>
                     </div>
-                    <p class="read-more">${movieInfo.Plot}</p>
+                    <p class="read-more read-more-toggle">${movieInfo.Plot}</p>
                 </div>
                 
             </div>
@@ -76,16 +71,14 @@ async function handleSearch(searchInput) {
                         <p>${movieInfo.Genre}</p>
                         <p class='add-watchlist-button' data-watchlistadd='${movieInfo.imdbID}'><i class="fa-solid fa-plus"></i> Watchlist</p>
                     </div>
-                    <p class="read-more">${movieInfo.Plot}</p>
+                    <p class="read-more read-more-toggle">${movieInfo.Plot}</p>
                 </div>
                 
             </div>
             <hr>
         `
         }
-        
-
-        
+            
     })
 
     const movieWatchlistArray = await Promise.all(moviePromises)
@@ -94,48 +87,6 @@ async function handleSearch(searchInput) {
  
     return movieWatchlistHTML
 }
-
-//watchlist functionality
-// document.addEventListener('DOMContentLoaded', () => {
-//     console.log('page loaded')
-//     renderWatchlist()
-// });
-
-// function renderWatchlist() {
-//     const currentwatchlist = localStorage.getItem('watchlist') 
-    
-//     let watchListArray = JSON.parse(currentwatchlist)
-    
-//     watchListPage.innerHTML = '';
-//     const watchListPageHTML = watchListArray.map((movie) => {
-        
-//         return `
-//         <div class="movie-element" id='${movie.imdbID}'>
-//             <div class='movielist-img'>
-//                 <img src='${movie.Poster}' alt='The movie poster for ${movie.Title}. If there is no poster, there either is none or an error occurred.'>
-//             </div>
-//             <div class='movie-second-column'>
-//                 <div class='movie-title-and-rating'>
-//                     <h1>${movie.Title} (${movie.Year})</h1>
-//                     <p><i class="fa-solid fa-star"> ${movie.imdbRating}</i>
-//                 </div>
-//                 <div class='movie-info'>
-//                     <p>${movie.Runtime}</p>
-//                     <p>${movie.Genre}</p>
-//                     <p class='remove-watchlist-button' data-watchlistremove='${movie.imdbID}'><i class="fa-solid fa-xmark"></i> Remove Film</p>
-//                 </div>
-//                 <p class="read-more">${movie.Plot}</p>
-//             </div>
-            
-//         </div>
-//         <hr>
-//         `
-        
-//     }).join('')
-    
-//     watchListPage.innerHTML = watchListPageHTML 
-// }
-
 
 document.addEventListener('click', (e) => {
 
@@ -156,16 +107,10 @@ async function addMovieToWatchlist(movieId) {
             let watchListArray = JSON.parse(currentwatchlist)
             
             watchListArray.push(newWatchlistData)
-            console.log(watchListArray)
             localStorage.setItem('watchlist', JSON.stringify(watchListArray))
             
         })
 
     document.querySelector(`p[data-watchlistadd='${movieId}']`).innerHTML = "(Already in watchlist)"
-    document.querySelector(`p[data-watchlistadd='${movieId}']`).style.color = 'white'
+    document.querySelector(`p[data-watchlistadd='${movieId}']`).style.color = '#A9A9A9'
 }
-
-// function removeMovieFromWatchlist(movieId) {
-//     const currentwatchlist = localStorage.getItem('watchlist')
-//     console.log(movieId)
-// }
