@@ -43,7 +43,6 @@ async function handleSearch(searchInput) {
         }
         
         const watchlistToJson = localStorage.getItem('watchlist')
-        console.log(watchlistToJson)
         const currentwatchlist = JSON.parse(watchlistToJson)
         const idsToCheck = currentwatchlist.map((movieInWatchlist) => {
             return movieInWatchlist.imdbID
