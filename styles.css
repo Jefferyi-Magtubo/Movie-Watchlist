@@ -134,6 +134,10 @@ p > a {
     height: 150px;
 }
 
+.movie-element {
+    padding: 1em 0 0.2em 0;
+}
+
 .movie-element img {
     width: 100px;
     height: 150px;
@@ -180,4 +184,8 @@ hr {
 
 .already-watched {
     color: #A9A9A9
+}
+
+hr:last-child {
+    display: none;
 }

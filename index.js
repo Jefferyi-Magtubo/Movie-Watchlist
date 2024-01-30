@@ -90,6 +90,8 @@ async function handleSearch(searchInput) {
     return movieWatchlistHTML
 }
 
+//Watchlist Functionality
+
 document.addEventListener('click', (e) => {
 
     if(e.target.dataset.watchlistadd) {
