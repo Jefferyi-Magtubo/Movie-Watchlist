@@ -25,6 +25,9 @@ async function handleSearch(searchInput) {
         const updatedTitleOfMovie = titleOfMovie.replace(/(?<![a-zA-Z])'(?<![a-zA-Z])/g, '').replace(/,/g, '') //checking to make sure the ' isn't between letters. If it is, it wont'get replaced
         const movie = await fetch(`https://www.omdbapi.com/?apikey=69a3b158&t=${updatedTitleOfMovie}&type=movie&y=${result.Year}`)
         const movieInfo = await movie.json()
+        if(movieInfo.Response === "False") {
+            return
+        }
         
         const watchlistToJson = localStorage.getItem('watchlist')
         const currentwatchlist = JSON.parse(watchlistToJson)
