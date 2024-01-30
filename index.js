@@ -115,7 +115,7 @@ document.addEventListener('click', (e) => {
 })
 
 async function addMovieToWatchlist(movieId) {
-    fetch(`http://www.omdbapi.com/?apikey=69a3b158&i=${movieId}`)
+    fetch(`https://www.omdbapi.com/?apikey=69a3b158&i=${movieId}`)
         .then(res => res.json())
         .then(async (data) => {
             let newMovie = data
