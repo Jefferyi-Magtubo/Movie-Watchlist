@@ -3,6 +3,14 @@ const searchBtn = document.getElementById('search-btn')
 const movieList = document.getElementById('movie-list')
 const watchListPage = document.getElementById('watchlist')
 
+//Making Watchlist in local storage
+document.addEventListener('DOMContentLoaded', () => {
+
+    if(!localStorage.getItem('watchlist')) {
+        localStorage.setItem('watchlist', JSON.stringify([]))
+    }
+})
+
 //Search Functionality
 searchBtn.addEventListener('click', async (e) => {
     e.preventDefault()
@@ -30,6 +38,7 @@ async function handleSearch(searchInput) {
         }
         
         const watchlistToJson = localStorage.getItem('watchlist')
+        console.log(watchlistToJson)
         const currentwatchlist = JSON.parse(watchlistToJson)
         const idsToCheck = currentwatchlist.map((movieInWatchlist) => {
             return movieInWatchlist.imdbID
