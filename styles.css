@@ -189,3 +189,7 @@ hr {
 hr:last-child {
     display: none;
 }
+
+.error-message {
+    text-align: center;
+}

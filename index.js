@@ -27,6 +27,11 @@ async function handleSearch(searchInput) {
     const res = await fetch(`https://www.omdbapi.com/?apikey=69a3b158&s=${updatedTitle}&type=movie`)
     const data = await res.json()
     const searchResults = data.Search
+    if (!searchResults) {
+        return `
+        <h1 class='error-message'>No Results Found</h1>
+        `
+    }
 
     const moviePromises = searchResults.map(async(result) => {
         const titleOfMovie = result.Title.split(' ').join('-')
